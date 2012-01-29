@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
 
-  before_save :create_string, :create_uni
+  before_save :create_string, :create_uni, :auto_confirm, :create_opentok_session
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -22,5 +22,19 @@ class User < ActiveRecord::Base
     def create_uni
       self.uni = self.email.split("@").first
     end
+    
+    def create_opentok_session
+      @opentok = OpenTok::OpenTokSDK.new OT_key, OT_secret
+      self.session_id=@opentok.create_session
+      puts '----------'
+      puts session_id
+    end
+    
+    def auto_confirm
+      if Rails.env.development?
+        self.confirmed_at=Time.now()
+      end
+    end
+    
 
 end
