@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
 
-  before_save :create_string
+  before_save :create_string, :create_uni
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
 
     def create_string
       self.random_string = Devise.friendly_token[0,20]
+    end
+
+    def create_uni
+      self.uni = self.email.split("@").first
     end
 
 end
