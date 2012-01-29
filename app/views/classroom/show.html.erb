@@ -2,8 +2,8 @@
 <script type="text/javascript">
 
 
-
 var pusher = new Pusher('994bb8883e904a01481e');
+
 Pusher.channel_auth_endpoint = '/pusher/auth';
 
 var pc = pusher.subscribe('presence-channel');
@@ -14,19 +14,35 @@ pc.bind('thing_create', function(thing) {
 
 
 pc.bind('pusher:subscription_succeeded', function(members) {
+	members.each(function(member){
+		add_member(member);
+	})
 });
 
-pc.bind('pusher:member_added', function(members) {
-  // for example:
-  alert('someone is connected with you!');
-  alert(members);
+pc.bind('pusher:member_added', function(member) {
+	add_member(member);
 });
+
+pc.bind('pusher:member_removed', function(member) {
+  remove_member(member);
+});
+
+function add_member(member){
+	var class_name="member_id-"+member.id
+	$("div#status").append(" <p class ='"+class_name+"' > member "+ member.id +" is online </p>");
+}
+
+function remove_member(member){
+	var class_name="p.member_id-"+member.id
+	$(class_name).remove();
+}
+
+
+
 </script>
 
 
 
-<div id='status'> Pusher Channel</div>
+<div id='status'></div>
 
-<h1>Classroom#show</h1>
-<p>Find me in app/views/classroom/show.html.erb</p>
 
