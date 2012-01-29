@@ -185,10 +185,7 @@ Devise.setup do |config|
   #
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
- !     Detected sqlite3 gem which is not supported on Heroku.
- !     Detected sqlite3 gem which is not supported on Heroku.
- !     Detected sqlite3 gem which is not supported on Heroku.
- !     Detected sqlite3 gem which is not supported on Heroku.
+
   #
   # The :"*/*" and "*/*" formats below is required to match Internet
   # Explorer requests.
