@@ -9,40 +9,45 @@ Pusher.channel_auth_endpoint = '/pusher/auth';
 var pc = pusher.subscribe('presence-channel-<%= params[:id] %>');
 
 pc.bind('thing_create', function(thing) {
-  alert('A thing was created: ' + thing);
+  get_list_user();
 });
 
 
 pc.bind('pusher:subscription_succeeded', function(members) {
-	members.each(function(member){
-		add_member(member);
-	})
+	get_list_user();
 });
 
 pc.bind('pusher:member_added', function(member) {
-	add_member(member);
+	get_list_user();
 });
 
 pc.bind('pusher:member_removed', function(member) {
-  remove_member(member);
+  get_list_user();
 });
 
-function add_member(member){
-	var class_name="member_id-"+member.id
-	if ($('.'+class_name).length == 0){
-		$("div#status").append(" <p class ='"+class_name+"' > "+ member.info.email +" is online </p>");
-	}
+// function add_member(member){
+// 	var class_name="member_id-"+member.id
+// 	if ($('.'+class_name).length == 0){
+// 		$("div#status").append(" <p class ='"+class_name+"' > "+ member.info.email +" is online </p>");
+// 	}
+// 
+// }
+// 
+// function remove_member(member){
+// 	var class_name="p.member_id-"+member.id
+// 	$(class_name).remove();
+// }
 
-}
-
-function remove_member(member){
-	var class_name="p.member_id-"+member.id
-	$(class_name).remove();
+$.getJSON('ajax/test.json', function(data){
+	
+	var items = [];
+	$.each(data, function(user_id, classroom_id) {
+    items.push('<li id="' + user_id + '">' + classroom_id + '</li>');
+  });
 }
 
 
 </script>
-test!!!
 
 
 <div id='status'></div>
