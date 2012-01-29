@@ -1,1 +1,72 @@
-<h1>Welcome to the <%= @user.name %> 's classroom</h1>
+<h1>Welcome to <%= @user.name %> 's classroom</h1>
+<script src="http://staging.opentok.com/v0.91/js/TB.min.js"></script>
+<script>
+var apiKey = '11511022';
+var sessionId = '<%= @s_id %>';
+var token = '<%= @token %>';
+
+if (TB.checkSystemRequirements() != TB.HAS_REQUIREMENTS) {
+	alert("You don't have the minimum requirements to run this application."
+		  + "Please upgrade to the latest version of Flash.");
+} else {
+	session = TB.initSession(sessionId);	// Initialize session
+	// Add event listeners to the session
+	session.addEventListener('sessionConnected', sessionConnectedHandler);
+	//session.addEventListener('sessionDisconnected', sessionDisconnectedHandler);
+	//session.addEventListener('connectionCreated', connectionCreatedHandler);
+	//session.addEventListener('connectionDestroyed', connectionDestroyedHandler);
+	session.addEventListener('streamCreated', streamCreatedHandler);
+	//session.addEventListener('streamDestroyed', streamDestroyedHandler);
+	//session.addEventListener("signalReceived", signalReceivedHandler);
+}
+
+//--------------------------------------
+//  LINK CLICK HANDLERS
+//--------------------------------------
+
+
+function connect() {
+	session.connect(apiKey, token);
+}
+
+function disconnect() {
+	session.disconnect();
+}
+function publish(){
+	var publisher=session.publish('publisher');
+}
+
+function sessionConnectedHandler(event) {
+      publisher = session.publish('publisher');
+       
+      // Subscribe to streams that were in the session when we connected
+      subscribeToStreams(event.streams);
+		
+    }
+	
+function streamCreatedHandler(event) {
+	      // Subscribe to any new streams that are created
+	      subscribeToStreams(event.streams);
+	    }
+function subscribeToStreams(streams) {
+		      for (var i = 0; i < streams.length; i++) {
+		        // Make sure we don't subscribe to ourself
+				
+		        if (streams[i].connection.connectionId == session.connection.connectionId) {
+		          return;
+		        }
+		        session.subscribe(streams[i], "subscriber");
+		      }
+		    }
+
+connect();
+
+
+</script>
+<div id="publisher"></div>
+<div id="subscriber"></div>
+<iframe src='http://willyou.typewith.me/p/<%= @user.random_string%>?showControls=true&showChat=true&showLineNumbers=false&useMonospaceFont=false&userName=<%=current_user.name%>' width=600 height=400>
+	
+<% render 'userlist' %>
+
+

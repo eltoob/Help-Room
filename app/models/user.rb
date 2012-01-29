@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     
     def create_opentok_session
       @opentok = OpenTok::OpenTokSDK.new OT_key, OT_secret
-      self.session_id=@opentok.create_session
+      self.session_id=@opentok.create_session.session_id
       puts '----------'
       puts session_id
     end
