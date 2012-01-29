@@ -5,6 +5,7 @@ Helproom::Application.routes.draw do
   get "classroom/show"
 
   get "home/index"
+  get "c/:id" => "classroom#show"
 
   devise_for :users
 
