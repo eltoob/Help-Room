@@ -1,9 +1,11 @@
 ActionMailer::Base.smtp_settings = {
-  :address              => "smtp.gmail.com",
+  :address              => "smtp.sendgrid.net",
   :port                 => 587,
-  :domain               => "tutorinstant.com",
-  :user_name            => "info@tutorinstant.com",
-  :password             => "elietoubi",
+  :domain               => "heroku.com",
+  :user_name            => ENV['SENDGRID_USERNAME']
+  :password             => ENV['SENDGRID_PASSWORD']
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
+
+ActionMailer::Base.delivery_method = :smtp
