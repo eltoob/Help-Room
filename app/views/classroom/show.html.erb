@@ -66,7 +66,11 @@ connect();
 <div id="publisher"></div>
 <div id="subscriber"></div>
 <iframe src='http://willyou.typewith.me/p/<%= @user.random_string%>?showControls=true&showChat=true&showLineNumbers=false&useMonospaceFont=false&userName=<%=current_user.name%>' width=600 height=400>
-	
+
+<% if @user == current_user %>
+  <button type=submit onclick="alert('Move queue')">Next</button>
+<% end %>
+<h1>Queue</h1>	
 <% render 'userlist' %>
 
 
