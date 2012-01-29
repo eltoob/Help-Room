@@ -1,0 +1,49 @@
+<script src="http://js.pusher.com/1.11/pusher.min.js"></script>
+<script type="text/javascript">
+
+
+var pusher = new Pusher('994bb8883e904a01481e');
+
+Pusher.channel_auth_endpoint = '/pusher/auth';
+
+var pc = pusher.subscribe('presence-channel');
+
+pc.bind('thing_create', function(thing) {
+  alert('A thing was created: ' + thing);
+});
+
+
+pc.bind('pusher:subscription_succeeded', function(members) {
+	members.each(function(member){
+		add_member(member);
+	})
+});
+
+pc.bind('pusher:member_added', function(member) {
+	add_member(member);
+});
+
+pc.bind('pusher:member_removed', function(member) {
+  remove_member(member);
+});
+
+function add_member(member){
+	var class_name="member_id-"+member.id
+	if ($('.'+class_name).length == 0){
+		$("div#status").append(" <p class ='"+class_name+"' > "+ member.info.email +" is online </p>");
+	}
+
+}
+
+function remove_member(member){
+	var class_name="p.member_id-"+member.id
+	$(class_name).remove();
+}
+
+
+
+</script>
+
+
+
+<div id='status'></div>
