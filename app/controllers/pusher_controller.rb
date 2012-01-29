@@ -5,8 +5,8 @@ class PusherController < ApplicationController
       response = Pusher[params[:channel_name]].authenticate(params[:socket_id], {
               :user_id => current_user.id, # => required
               :user_info => { # => optional - for example
-                :name => Random.rand(11),
-                :email => Random.rand(11)
+                :name => current_user.name,
+                :email => current_user.email
               }
             })
       render :json => response
