@@ -29,7 +29,7 @@ pc.bind('pusher:member_removed', function(member) {
 
 function add_member(member){
 	var class_name="member_id-"+member.id
-	$("div#status").append(" <p class ='"+class_name+"' > member "+ member.id +" is online </p>");
+	$("div#status").append(" <p class ='"+class_name+"' > "+ member.info.email +" is online </p>");
 }
 
 function remove_member(member){
