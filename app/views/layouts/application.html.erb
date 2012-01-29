@@ -8,12 +8,15 @@
 </head>
 
 <body style="padding-top: 60px">
-	<% if user_signed_in? %>
-   <p>Signed in as <%= current_user.email %>. Not you?</p>
+  <div id="identity">
+<% if user_signed_in? %>
+	   <p>Signed in as <%= current_user.email %>. Not you?</p>
     <%= link_to "Sign out", destroy_user_session_path %>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+	</div>
   <% end %>
+  </div>
   <div class="topbar">
     <div class="topbar-inner">
       <div class="container">
