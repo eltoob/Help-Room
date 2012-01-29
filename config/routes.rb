@@ -1,4 +1,6 @@
 Helproom::Application.routes.draw do
+  get "classroom/show"
+
   devise_for :users
 
   # The priority is based upon order of creation:
