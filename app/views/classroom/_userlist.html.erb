@@ -6,7 +6,7 @@ var pusher = new Pusher('994bb8883e904a01481e');
 
 Pusher.channel_auth_endpoint = '/pusher/auth';
 
-var pc = pusher.subscribe('presence-channel');
+var pc = pusher.subscribe('presence-channel-<%= params[:id] %>');
 
 pc.bind('thing_create', function(thing) {
   alert('A thing was created: ' + thing);
@@ -41,9 +41,8 @@ function remove_member(member){
 }
 
 
-
 </script>
-
+test!!!
 
 
 <div id='status'></div>
