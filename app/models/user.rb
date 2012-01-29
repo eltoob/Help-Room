@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
 
   validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_uniqueness_of :name, :case_sensitive => false
 
 end
