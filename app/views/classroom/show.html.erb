@@ -1,0 +1,32 @@
+<script src="http://js.pusher.com/1.11/pusher.min.js"></script>
+<script type="text/javascript">
+
+
+
+var pusher = new Pusher('994bb8883e904a01481e');
+Pusher.channel_auth_endpoint = '/pusher/auth';
+
+var pc = pusher.subscribe('presence-channel');
+
+pc.bind('thing_create', function(thing) {
+  alert('A thing was created: ' + thing);
+});
+
+
+pc.bind('pusher:subscription_succeeded', function(members) {
+});
+
+pc.bind('pusher:member_added', function(members) {
+  // for example:
+  alert('someone is connected with you!');
+  alert(members);
+});
+</script>
+
+
+
+<div id='status'> Pusher Channel</div>
+
+<h1>Classroom#show</h1>
+<p>Find me in app/views/classroom/show.html.erb</p>
+

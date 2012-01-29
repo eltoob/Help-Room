@@ -1,4 +1,6 @@
 Helproom::Application.routes.draw do
+  post "pusher/auth"
+
   get "classroom/show"
 
   devise_for :users
