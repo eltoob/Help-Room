@@ -25,10 +25,10 @@
    <p><%= flash[:notice] %></p>
  </div>
  <% end %>
- <% if flash[:error] %>
+ <% if flash[:alert] %>
  <div class="alert-message error fade in" data-alert="alert">
    <a class="close" href="#">×</a>
-   <p><%= flash[:error] %></p>
+   <p><%= flash[:alert] %></p>
  </div>
  <% end %>
 
