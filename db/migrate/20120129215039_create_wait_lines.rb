@@ -4,8 +4,9 @@ class CreateWaitLines < ActiveRecord::Migration
       t.integer :user_id
       t.string :classroom_id
       t.integer :status
-
-      t.timestamps
+      t.datetime :created_at
+      t.datetime :updated_at
+      t.string :username
     end
   end
 end
