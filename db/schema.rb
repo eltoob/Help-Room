@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129082716) do
+ActiveRecord::Schema.define(:version => 20120129232431) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -38,5 +38,14 @@ ActiveRecord::Schema.define(:version => 20120129082716) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "wait_lines", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "classroom_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
 
 end

@@ -9,40 +9,79 @@ Pusher.channel_auth_endpoint = '/pusher/auth';
 var pc = pusher.subscribe('presence-channel-<%= params[:id] %>');
 
 pc.bind('thing_create', function(thing) {
-  alert('A thing was created: ' + thing);
 });
 
 
 pc.bind('pusher:subscription_succeeded', function(members) {
-	members.each(function(member){
-		add_member(member);
-	})
+	if (members.count<3){
+		alert('pas grand monde!')
+	}
+	members.each(function(member) {
+    add_member(member.id, member.info);
+  });
 });
 
 pc.bind('pusher:member_added', function(member) {
-	add_member(member);
+	add_member(member.id, member.info);
 });
 
 pc.bind('pusher:member_removed', function(member) {
-  remove_member(member);
+  remove_member(member.id,member.info)
 });
 
-function add_member(member){
-	var class_name="member_id-"+member.id
-	if ($('.'+class_name).length == 0){
-		$("div#status").append(" <p class ='"+class_name+"' > "+ member.info.email +" is online </p>");
+
+function add_member(id,info){
+	var text ="<p class='user-"+id+"'>"+info.email+"</p>"
+	$("#status").append(text)
+}
+
+function remove_member(id,info){
+	var text=".user-"+id
+	$(text).remove();
+	
+}
+function SortByTime(a, b){
+  var atime = a[2];
+  var btime = b[2]; 
+  return ((atime > btime) ? -1 : ((atime < btime) ? 1 : 0));
+}
+
+function get_queue(members){
+	var member_name=[];
+	var member_id=[];
+	var member_date=[];
+	var i=1;
+	members.each(function(member) {
+		member_name.push(member.info.name);
+		member_id.push(member.id);
+		member_date.push(member.info.arrived_at);
+		console.log(member);
+		i=i+1;
+	  });
+	var tableau=[member_name,member_id,member_date]
+	var transposed = $.transpose(tableau);
+	console.log(transposed);
+	Matrix=transposed.sort(SortByTime);
+	console.log(Matrix);
+	
+}
+
+function remove_user(tab,user_id){
+var new_tab
+var j=0
+	for(var i = 0; i <= tab.length-1; i--){
+	    if(tab[i][1] != user_id){ 
+		    j=j+1
+	        new_tab[j]=tab[i]
+	    }
 	}
 
 }
 
-function remove_member(member){
-	var class_name="p.member_id-"+member.id
-	$(class_name).remove();
-}
+
 
 
 </script>
-test!!!
 
 
 <div id='status'></div>

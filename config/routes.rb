@@ -1,5 +1,7 @@
 Helproom::Application.routes.draw do
 
+  get "getstatus/:id" => "getstatus#index"
+
   root :to => "home#index"
 
   post "pusher/auth"
