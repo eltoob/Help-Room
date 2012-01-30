@@ -35,6 +35,9 @@ function disconnect() {
 function publish(){
 	var publisher=session.publish('publisher');
 }
+<% if current_user.uni== params[:id] %>
+connect();
+<% end %>
 
 function sessionConnectedHandler(event) {
       publisher = session.publish('publisher');

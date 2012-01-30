@@ -13,23 +13,34 @@ pc.bind('thing_create', function(thing) {
 
 
 pc.bind('pusher:subscription_succeeded', function(members) {
-	if (members.count<3){
-		alert('pas grand monde!')
+	get_queue(members	)
+	if (members.count<3){	
 	}
+	
 	members.each(function(member) {
-    add_member(member.id, member.info);
+    console.log(member.info.email);
+	remove_member(member)
+	insert_member(member.id, member.info);
   });
 });
 
 pc.bind('pusher:member_added', function(member) {
 	add_member(member.id, member.info);
+	
 });
 
 pc.bind('pusher:member_removed', function(member) {
   remove_member(member.id,member.info)
 });
 
+// function publish_first(email){
+// 	alert(member.info.email)
+// }
 
+function insert_member(id,info){
+	var text ="<p class='user-"+id+"'>"+info.email+"</p>"
+	$("#status").append(text)
+}
 function add_member(id,info){
 	var text ="<p class='user-"+id+"'>"+info.email+"</p>"
 	$("#status").append(text)
@@ -37,8 +48,7 @@ function add_member(id,info){
 
 function remove_member(id,info){
 	var text=".user-"+id
-	$(text).remove();
-	
+	$(text).remove();	
 }
 function SortByTime(a, b){
   var atime = a[2];
@@ -60,8 +70,9 @@ function get_queue(members){
 	  });
 	var tableau=[member_name,member_id,member_date]
 	var transposed = $.transpose(tableau);
-	console.log(transposed);
+	
 	Matrix=transposed.sort(SortByTime);
+	console.log(transposed);
 	console.log(Matrix);
 	
 }
