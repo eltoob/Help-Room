@@ -36,11 +36,11 @@ function publish(){
 	var publisher=session.publish('publisher');
 }
 <% if current_user.uni== params[:id] %>
-connect();
+publish();
 <% end %>
 
 function sessionConnectedHandler(event) {
-      publisher = session.publish('publisher');
+      //publisher = session.publish('publisher');
        
       // Subscribe to streams that were in the session when we connected
       subscribeToStreams(event.streams);
@@ -67,6 +67,7 @@ function streamCreatedHandler(event) {
 <div id="subscriber"></div>
 <!--<iframe src='http://willyou.typewith.me/p/<%= @user.random_string%>?showControls=true&showChat=true&showLineNumbers=false&useMonospaceFont=false&userName=<%=current_user.name%>' width=600 height=400></iframe>
 -->	
-<% render 'userlist' %>
+this is my list
+<% render '_userlist' %>
 
 

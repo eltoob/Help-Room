@@ -1,7 +1,8 @@
+list2
 <script src="http://js.pusher.com/1.11/pusher.min.js"></script>
 <script type="text/javascript">
 
-
+connect();
 var pusher = new Pusher('994bb8883e904a01481e');
 
 Pusher.channel_auth_endpoint = '/pusher/auth';
@@ -13,42 +14,47 @@ pc.bind('thing_create', function(thing) {
 
 
 pc.bind('pusher:subscription_succeeded', function(members) {
-	get_queue(members	)
+	publish_first()
 	if (members.count<3){	
 	}
-	
 	members.each(function(member) {
-    console.log(member.info.email);
-	remove_member(member)
-	insert_member(member.id, member.info);
+	remove_member(member.id, member.info);
+	add_member(member.id, member.info);
   });
 });
 
 pc.bind('pusher:member_added', function(member) {
+	remove_member(member.id , member.info);
 	add_member(member.id, member.info);
 	
 });
 
 pc.bind('pusher:member_removed', function(member) {
-  remove_member(member.id,member.info)
+	remove_member(member.id,member.info);
+	publish_first()
 });
 
-// function publish_first(email){
-// 	alert(member.info.email)
-// }
+ function publish_first(){
+	email=$("p").first().text();
+	if  (email == "<%= current_user.email %>") {
+		alert("You are the next on line!");
+		publish();
+	}
+ }
 
-function insert_member(id,info){
-	var text ="<p class='user-"+id+"'>"+info.email+"</p>"
-	$("#status").append(text)
-}
+
 function add_member(id,info){
-	var text ="<p class='user-"+id+"'>"+info.email+"</p>"
+	var name=info.name
+	var text ="<p class='user-"+name+"'>"+info.email+"</p>"
+	remove_member(id,info);
 	$("#status").append(text)
 }
 
 function remove_member(id,info){
-	var text=".user-"+id
-	$(text).remove();	
+	var name=info.name
+	var text=".user-"+name
+	$(text).remove();
+	//console.log(id)	
 }
 function SortByTime(a, b){
   var atime = a[2];
@@ -93,6 +99,22 @@ var j=0
 
 
 </script>
+
+HELLOO
+this 
+</br>
+
+</br>
+</br>
+</br>
+</br>
+fjkdlsjfsdlk
+
+d
+
+das
+sa
+<h1>test</h1>
 
 
 <div id='status'></div>

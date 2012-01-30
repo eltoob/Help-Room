@@ -7,47 +7,54 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body style="padding-top: 60px">
-	<% if user_signed_in? %>
-   <p>Signed in as <%= current_user.email %>. Not you?</p>
-    <%= link_to "Sign out", destroy_user_session_path %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
-	<% if flash[:notice] %>
-	 <div class="alert-message success fade in" data-alert="alert">
-	   <p><%= flash[:notice] %></p>
-	 </div>
-	 <% end %>
-	 <% if flash[:alert] %>
-	 <div class="alert-message error fade in" data-alert="alert">
-	   <p><%= flash[:alert] %></p>
-	 </div>
-	 <% end %>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="container">
-        <h3><%= link_to "Helproom", "/" %></h3>
-        <ul class="nav">
-          <li><%= link_to "Link1", "/path1"  %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="content">
-      <div class="row">
-          <%= yield %>
-          <h3>Who is online?</h3>
-          <ul>
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
-    </div>
-  </div>
+<body>
+	<!-- Topbar
+	    ================================================== -->
+	    <div class="topbar">
+	      <div class="topbar-inner">
+	        <div class="container">
+	          <a href="http://www.locayte.com/" class="brand">helproom<sup><span class="label success">beta</span></sup></a>
+<% unless user_signed_in? %>		 
+		 <ul class="nav">
+	          	<li>
+	          		<a href="">How it works</a>
+	          	</li>
+
+	          	<li>
+	          		<a href="">Contact Us</a>
+	          	</li>
+	          </ul>
+	          
+
+<%= form_for("user", :url => user_session_path) do |f| %>
+  <%= f.email_field :email ,:class=>'medium',:placeholder => 'CU email' %>
+  <%= f.password_field :password, :class =>'medium' ,:placeholder =>'password' %>
+
+
+  <button type="submit" class="btn">Sign in</button>
+<% end %>
+				
+	          <ul class="nav secondary-nav">
+	          <li>
+		  	  <%= link_to "Not member yet?", new_registration_path("user") %>
+		  	  </li>
+		  	  </ul>
+<%else%>
+<ul class="nav">
+      	<li>
+      		<a style='text-align:right;'>Welcome <%= current_user.uni%></a>
+      	</li>
+		<li>
+			<%= link_to "logout", "users/sign_out" %>
+		</li>
+			
+</ul>
+<% end %>
+	        </div>
+	      </div>
+	    </div>
+	
+	<%= yield %>
 
 
 <%= debug(params) if Rails.env.development? %>
