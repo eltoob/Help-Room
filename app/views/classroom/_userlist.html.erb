@@ -9,6 +9,8 @@ Pusher.channel_auth_endpoint = '/pusher/auth';
 
 var pc = pusher.subscribe('presence-channel-<%= params[:id] %>');
 
+
+
 pc.bind('thing_create', function(thing) {
 });
 
@@ -23,6 +25,7 @@ pc.bind('pusher:subscription_succeeded', function(members) {
 	members.each(function(member) {
 	remove_member(member.id, member.info);
 	add_member(member.id, member.info);
+	
   });
 });
 
@@ -51,7 +54,9 @@ function add_member(id,info){
 	var name=info.name
 	var text ="<p class='user-"+name+"'> <img src='/assets/online.gif'/> "+info.email+"</p>"
 	remove_member(id,info);
+	if (info.email != '<%= @user.email %>'){
 	$("#status").append(text);
+	}
 }
 
 function remove_member(id,info){

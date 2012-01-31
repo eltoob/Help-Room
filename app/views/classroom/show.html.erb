@@ -136,6 +136,9 @@ function streamCreatedHandler(event) {
 			<iframe src='http://willyou.typewith.me/p/<%= @user.random_string%>?showControls=true&showChat=true&showLineNumbers=false&useMonospaceFont=false&userName=<%=current_user.name%>' width=560 height=400></iframe>
           </div>
           <div class="span4">
+			<% if current_user.uni== params[:id] %>
+			<button class="btn danger">Next student</button>
+			<% end %>
             <h3>Online users</h3>
 			<div id='status'></div>
 			
