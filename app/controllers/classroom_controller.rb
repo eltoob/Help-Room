@@ -26,9 +26,10 @@ class ClassroomController < ApplicationController
   end
 
   def send_text
+    @user = User.find_by_uni(params[:id])
  	 t = {
     'From' => CALLER_ID,
-    'To' => "301-233-7647",
+    'To' => @user.number,
     'Body' => ("#{CALLER_PIN} Your students need you! Come online!")
  	 }
 

@@ -65,8 +65,8 @@ function streamCreatedHandler(event) {
 
 <% if @user == current_user %>
   <button>Next</button>
-<% else %>
-  <%= button_to "TA not here? Text him/her", :action => "send_text" %>
+<% elsif @user.number != nil %>
+  <%= button_to "TA not here? Text him/her", {:action => "send_text", :id =>@user.uni}%>
 <% end %>
 
 <iframe src='http://willyou.typewith.me/p/<%= @user.random_string%>?showControls=true&showChat=true&showLineNumbers=false&useMonospaceFont=false&userName=<%=current_user.name%>' width=600 height=400></iframe>
