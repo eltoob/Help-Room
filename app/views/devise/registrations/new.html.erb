@@ -9,6 +9,9 @@
   <div><%= f.label :email, "Columbia.edu email"  %><br />
   <%= f.email_field :email %></div>
 
+  <div><%= f.label :number, "Phone number **" %> <br />
+  <%= f.text_field :number %></div>
+
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
@@ -18,4 +21,5 @@
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
+<p>**If you are a TA and would like your students to be able to alert you if you are not present</p>
 <%= render :partial => "devise/shared/links" %>
