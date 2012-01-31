@@ -64,9 +64,10 @@ function streamCreatedHandler(event) {
 <div id="subscriber"></div>
 
 <% if @user == current_user %>
-  <button type=submit onclick="alert('Move queue')">Next</button>
+  <button>Next</button>
+<% else %>
+  <%= button_to "TA not here? Text him/her", :action => "send_text" %>
 <% end %>
-<h1>Queue</h1>	
 
 <iframe src='http://willyou.typewith.me/p/<%= @user.random_string%>?showControls=true&showChat=true&showLineNumbers=false&useMonospaceFont=false&userName=<%=current_user.name%>' width=600 height=400></iframe>
 

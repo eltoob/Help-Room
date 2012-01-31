@@ -7,6 +7,8 @@ Helproom::Application.routes.draw do
   post "pusher/auth"
 
   get "classroom/show"
+  get "classroom/send_text"
+  post "classroom/send_text"
 
   get "c/:id" => "classroom#show"
 
