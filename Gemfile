@@ -7,7 +7,6 @@ gem 'rails', '3.1.3'
 
 gem 'opentok'
 gem 'pusher'
-gem 'sqlite3'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 
