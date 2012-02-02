@@ -55,7 +55,7 @@
               <div class="input">
               <%= f.password_field :password_confirmation ,  :class=> 'xlarge'%>
               </div>
-<% end %>            
+          
 </div>
             
             <div class='cleaner_h10'></div>
@@ -70,7 +70,9 @@
             </ul>
             
             <div class='cleaner_h20'></div>
-            <input type='submit' value='Sign Up &raquo;' id='submit_up' name='submit_up' class="btn primary"/>
+			<%= f.submit "sign up", :id =>'submit_up', :class=> 'btn primary' %>
+            <!--<input type='submit' value='Sign Up &raquo;' id='submit_up' name='submit_up' class="btn primary"/> -->
           </form>
         </div>
         </div>
+<% end %>  
