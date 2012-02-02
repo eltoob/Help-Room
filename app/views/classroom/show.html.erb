@@ -30,6 +30,12 @@ var user_go
 user_go=true;
 <% end %>
 
+function next_user(){
+	$.ajax({
+	  url: "/next",
+	});
+	
+}
 function connect() {
 	session.connect(apiKey, token);
 }
@@ -57,8 +63,8 @@ function streamCreatedHandler(event) {
 	      // Subscribe to any new streams that are created
 	      subscribeToStreams(event.streams);
 	    }
-		function subscribeToStreams(streams) {
-				      for (var i = 0; i < streams.length; i++) {
+		function subscribeToStreams(streams) {  
+					for (var i = 0; i < streams.length; i++) {
 				        // Make sure we don't subscribe to ourself
 						
 				        if (streams[i].connection.connectionId == session.connection.connectionId) {
@@ -137,7 +143,7 @@ function streamCreatedHandler(event) {
           </div>
           <div class="span4">
 			<% if current_user.uni== params[:id] %>
-			<button class="btn danger">Next student</button>
+			<button class="btn danger" onClick="next_user();">Next student</button>
 			<% end %>
             <h3>Online users</h3>
 			<div id='status'></div>
