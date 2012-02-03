@@ -50,9 +50,6 @@ publish();
 
 
 function add_member(id,info){
-
-	var text="<p class='user-"+id+"'>"+info.email+"</p>"
-	$("#status").append(text)
 	var name=info.name
 	var text ="<p class='user-"+name+"'> <img src='/assets/online.gif'/> "+info.email+"</p>"
 	remove_member(id,info);
@@ -107,11 +104,6 @@ var j=0
 }
 
 
-</script>
-
-
-<div id='status'></div>
-
 
 </script>
 
@@ -119,4 +111,3 @@ var j=0
 
 </div>
 </div>
-
