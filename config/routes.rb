@@ -6,7 +6,7 @@ Helproom::Application.routes.draw do
   root :to => "home#index"
   get "about" => "home#about"
   post "pusher/auth"
-
+ 
   get "classroom/show"
   get "classroom/send_text"
   post "classroom/send_text"

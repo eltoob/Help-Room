@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name,  :ta, :session_id, :random_string, :number
 
   validates_presence_of :name
-  validates_uniqueness_of :name, :case_sensitive => false
 
   private
 
