@@ -20,7 +20,7 @@ pc.bind('thing_create', function(thing) {
 
 pc.bind('pusher:subscription_succeeded', function(members) {
 	members.each(function(member) {
-	remove_member(member.id, member.info);
+	
 	add_member(member.id, member.info);
 	
   });
@@ -33,7 +33,7 @@ pc.bind('pusher:subscription_succeeded', function(members) {
 });
 
 pc.bind('pusher:member_added', function(member) {
-	remove_member(member.id , member.info);
+
 	add_member(member.id, member.info);
 	
 });
