@@ -25,7 +25,8 @@ if (TB.checkSystemRequirements() != TB.HAS_REQUIREMENTS) {
 //--------------------------------------
 //  LINK CLICK HANDLERS
 //--------------------------------------
-var user_go
+var user_go;
+var TA_presence=0;
 <% if current_user.uni==params[:id] %>
 user_go=true;
 <% end %>
@@ -33,6 +34,13 @@ user_go=true;
 function next_user(){
 	$.ajax({
 	  url: "/next",
+	});
+	
+}
+
+function notify_TA(){
+	$.ajax({
+	  url: "/classroom/send_text/<%= params[:id] %>/<%= current_user.uni %>",
 	});
 	
 }

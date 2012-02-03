@@ -26,6 +26,10 @@ pc.bind('pusher:subscription_succeeded', function(members) {
   });
 	pusher_conn=true;
 	publish_first();
+	if (TA_presence == 0){
+		notify_TA();
+		alert("your TA is not here yet but has been notified");
+	}
 });
 
 pc.bind('pusher:member_added', function(member) {
@@ -55,6 +59,9 @@ function add_member(id,info){
 	remove_member(id,info);
 	if (info.email != '<%= @user.email %>'){
 	$("#status").append(text);
+	}
+	if('<%= current_user.uni %>' == '<%= params[:id] %>'){
+		TA_presence=1;
 	}
 }
 
