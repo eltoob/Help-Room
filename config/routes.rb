@@ -3,15 +3,14 @@ Helproom::Application.routes.draw do
   get "getstatus/:id" => "getstatus#index"
   get "contact" => "home#contact"
   get "next" => "classroom#next"
-
   root :to => "home#index"
-
+  get "about" => "home#about"
   post "pusher/auth"
 
   get "classroom/show"
   get "classroom/send_text"
   post "classroom/send_text"
- 
+
   get "c/:id" => "classroom#show"
 
   devise_for :users
@@ -72,3 +71,5 @@ Helproom::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+
+

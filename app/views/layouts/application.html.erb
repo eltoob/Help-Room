@@ -13,11 +13,11 @@
 	    <div class="topbar">
 	      <div class="topbar-inner">
 	        <div class="container">
-	          <a href="" class="brand">helproom<sup><span class="label success">beta</span></sup></a>
+	          <a href="/" class="brand">helproom<sup><span class="label success">beta</span></sup></a>
 <% unless user_signed_in? %>		 
 		 <ul class="nav">
 	          	<li>
-	          		<a href="">How it works</a>
+	          		<a href="/about">How it works</a>
 	          	</li>
 
 	          	<li>
@@ -42,13 +42,13 @@
 <%else%>
 <ul class="nav">
       	<li>
-      		<a style='text-align:right;'>Welcome <%= current_user.uni%></a>
+      		<a style='text-align:right;'>Welcome, <%= current_user.name%></a>
       	</li>
 		<li>
-			<%= link_to "logout", "/users/sign_out" %>
+			<%= link_to "Logout", "/users/sign_out" %>
 		</li>
 		<li>
-			<%= link_to "Go in test classroom", "/c/test" %>
+			<%= link_to "Check out a sample classroom", "/c/test" %>
 		</li>
 			
 </ul>

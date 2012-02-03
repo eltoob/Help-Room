@@ -1,17 +1,5 @@
 <h2>Sign up</h2>
 
-  <div><%= f.label :number, "Phone number **" %> <br />
-  <%= f.text_field :number %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-  
-
-<p>**If you are a TA and would like your students to be able to alert you if you are not present</p>
-<%= render :partial => "devise/shared/links" %>
-=======
 <div class="container">
       <div class='row'>
         <!-- Main hero unit for a primary marketing message or call to action -->
@@ -45,7 +33,12 @@
                 -->
               </div>
             </div>
-            
+            <div class="clearfix">
+			  <%= f.label :number, "Phone number**" %>
+			  <div class="input">
+				<%=f.text_field :number%>
+				</div>
+			  </div>
             <div class="clearfix">
               <%= f.label :"Password" %>
               <div class="input">
@@ -80,6 +73,7 @@
             <div class='cleaner_h20'></div>
 			<%= f.submit "sign up", :id =>'submit_up', :class=> 'btn primary' %>
             <!--<input type='submit' value='Sign Up &raquo;' id='submit_up' name='submit_up' class="btn primary"/> -->
+			<p>**If you are a TA and would like to receive a text when students need your help</p>
           </form>
         </div>
         </div>
