@@ -10,6 +10,8 @@ class ClassroomController < ApplicationController
 
   CALLER_PIN = "5781-1497"
 
+  protect_from_forgery :except => :next 
+
   def show
     @user = User.find_by_uni(params[:id])
     opentok = OpenTok::OpenTokSDK.new OT_key, OT_secret
@@ -45,6 +47,13 @@ class ClassroomController < ApplicationController
     	return
  	end
     redirect_to :back
+  end
+
+  def next
+    name_channel="presence-channel-"+current_user.uni
+    Pusher[name_channel].trigger('thing_create', {email:'test'})
+    render :text => "next user"
+    puts 'test'
   end
 
 end

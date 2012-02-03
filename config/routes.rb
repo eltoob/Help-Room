@@ -1,6 +1,8 @@
 Helproom::Application.routes.draw do
 
   get "getstatus/:id" => "getstatus#index"
+  get "contact" => "home#contact"
+  get "next" => "classroom#next"
 
   root :to => "home#index"
 

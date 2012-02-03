@@ -1,5 +1,61 @@
+<style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+      .content-row div{
+        display:inline-block;
+        width:192px;
+      }
+      .content-row input.btn{
+        margin:auto;
+        font-weight:bold;
+        width:100%;
+      }
+      img.content-thumbnail{
+        width:100%;
+      }
+      .title{
+        font-weight:bold;
+        font-size:18pt;
+        text-align:center;
+      }
+      .current-price{
+        color:#b94a48;
+        font-weight:bold;
+        font-size:22pt;
+        text-align:center;
+      }
+      .time-left{
+        color:#468847;
+        font-weight:bold;
+        font-size:18pt;
+        text-align:center;
+      }
+    </style>
 
 <h1>Welcome to HelpRoom</h1>
 
-<h3>What is this?</h3>
+    <div class=" span8 pull-left" style='height:200px;'>
+      <%= image_tag("chalkboard.jpg",:height =>'180%')%>
+    </div>
+    
+    <div class="well span5 pull-right" style='height:320px;'>
+	<h2>Hosting a classroom</h1>
+		<ul>
+			<li>Create an account</li>
+			<li>Confirm your email</li>
+			<li>Share your link with your students : XXX/c/Your-UNI</li>
+		</ul>
+			
+	<h2>Joining a classroom</h2>
+	<ul>
+		<li>Create an account</li>
+		<li>Confirm your email</li>
+		<li>Go to your TA's classroom XXX/c/his-uni'</li>
+	</ul>
+	</br>
+	<a href=/users/sign_up><button class="btn large success"> >> Get started Now! </button> </a>
+       
+    </div>
+    
 <p>Think of HelpRoom as office hours without the hassle of having to meet in person: it's a virtual space for TA's and students to give and get help.</p>
