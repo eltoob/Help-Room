@@ -20,16 +20,20 @@ pc.bind('thing_create', function(thing) {
 
 pc.bind('pusher:subscription_succeeded', function(members) {
 	members.each(function(member) {
-	remove_member(member.id, member.info);
+	
 	add_member(member.id, member.info);
 	
   });
 	pusher_conn=true;
 	publish_first();
+	if (TA_presence == 0){
+		notify_TA();
+		alert("your TA is not here yet but has been notified");
+	}
 });
 
 pc.bind('pusher:member_added', function(member) {
-	remove_member(member.id , member.info);
+
 	add_member(member.id, member.info);
 	
 });
@@ -50,14 +54,14 @@ publish();
 
 
 function add_member(id,info){
-
-	var text="<p class='user-"+id+"'>"+info.email+"</p>"
-	$("#status").append(text)
 	var name=info.name
 	var text ="<p class='user-"+name+"'> <img src='/assets/online.gif'/> "+info.email+"</p>"
 	remove_member(id,info);
 	if (info.email != '<%= @user.email %>'){
 	$("#status").append(text);
+	}
+	if('<%= current_user.uni %>' == '<%= params[:id] %>'){
+		TA_presence=1;
 	}
 }
 
@@ -107,11 +111,6 @@ var j=0
 }
 
 
-</script>
-
-
-<div id='status'></div>
-
 
 </script>
 
@@ -119,4 +118,3 @@ var j=0
 
 </div>
 </div>
-
