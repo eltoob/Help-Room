@@ -60,7 +60,7 @@ function add_member(id,info){
 	if (info.email != '<%= @user.email %>'){
 	$("#status").append(text);
 	}
-	if('<%= current_user.uni %>' == '<%= params[:id] %>'){
+	if(id.email == '<%= params[:id] %>@columbia.edu'){
 		TA_presence=1;
 	}
 }
