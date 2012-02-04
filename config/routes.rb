@@ -16,7 +16,7 @@ Helproom::Application.routes.draw do
   get "classroom/send_text/:recipient_id/:sender_id" => "classroom#send_text"
   post "classroom/send_text"
   get "c/:id" => "classroom#show"
-
+  
   devise_for :users
 
   devise_scope :user do
@@ -31,6 +31,7 @@ Helproom::Application.routes.draw do
     get "/signup" => "devise/registrations#new"
   end
   get "/users" =>"home#index"
+  get "/users/password" => "home#index"
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
