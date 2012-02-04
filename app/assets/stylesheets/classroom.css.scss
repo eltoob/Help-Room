@@ -1,35 +1,3 @@
 // Place all the styles related to the classroom controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-  padding-top: 60px;
-}
-.content-row div{
-  display:inline-block;
-  width:192px;
-}
-.content-row input.btn{
-  margin:auto;
-  font-weight:bold;
-  width:100%;
-}
-img.content-thumbnail{
-  width:100%;
-}
-.title{
-  font-weight:bold;
-  font-size:18pt;
-  text-align:center;
-}
-.current-price{
-  color:#b94a48;
-  font-weight:bold;
-  font-size:22pt;
-  text-align:center;
-}
-.time-left{
-  color:#468847;
-  font-weight:bold;
-  font-size:18pt;
-  text-align:center;
-}
