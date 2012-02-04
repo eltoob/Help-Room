@@ -28,7 +28,7 @@ pc.bind('pusher:subscription_succeeded', function(members) {
 	publish_first();
 	if (TA_presence == 0){
 		notify_TA();
-		//alert("your TA is not here yet but has been notified");
+		alert("your TA is not here yet but has been notified");
 	}
 });
 
@@ -46,7 +46,7 @@ pc.bind('pusher:member_removed', function(member) {
  function publish_first(){
 	email=$("p").first().text().substring(2);
 	if  (email == "<%= current_user.email %>") {
-		//alert("You are the next on line!");
+		alert("You are the next on line!");
 		user_go=true;
 	}
 publish(); 
@@ -60,7 +60,7 @@ function add_member(id,info){
 	if (info.email != '<%= @user.email %>'){
 	$("#status").append(text);
 	}
-	if('<%= current_user.uni %>' == '<%= params[:id] %>'){
+	if(id.email == '<%= params[:id] %>@columbia.edu'){
 		TA_presence=1;
 	}
 }

@@ -39,10 +39,12 @@ function next_user(){
 }
 
 function notify_TA(){
-	$.ajax({
-	  url: "/classroom/send_text/<%= params[:id] %>/<%= current_user.uni %>",
-	});
-	
+	if ('<%= current_user.uni %>' != '<%= params[:id] %>'){
+		//alert("your TA is not here yet but has been notified");
+		$.ajax({
+		  url: "/classroom/send_text/<%= params[:id] %>/<%= current_user.uni %>",
+		});
+	}
 }
 function connect() {
 	session.connect(apiKey, token);
