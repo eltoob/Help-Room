@@ -2,8 +2,8 @@ class ClassroomController < ApplicationController
   before_filter :authenticate_user!
   protect_from_forgery :except => :send_text 
 
-  ACCOUNT_SID = "ACa1ea1f6ff1ff670cab52e982a0df35f9"
-  ACCOUNT_TOKEN = "8f8c318d4c8ebdb71c53b0cbc140c9e5"
+  ACCOUNT_SID = "ACe33808a9c8ac4884aebafa7ddeba5322"
+  ACCOUNT_TOKEN = "e085edd0f5deb9ea6b5a04a954b3ead8"
   API_VERSION = '2010-04-01'
   CALLER_ID = "415-599-2671"
   CALLER_PIN = "1804-0134"

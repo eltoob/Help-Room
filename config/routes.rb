@@ -1,12 +1,17 @@
 Helproom::Application.routes.draw do
 
   get "getstatus/:id" => "getstatus#index"
+
   get "contact" => "home#contact"
+
   get "next" => "classroom#next"
+
   root :to => "home#index"
+
   get "about" => "home#about"
+
   post "pusher/auth"
-  get 'user/password' => "home#about"
+
   get "classroom/show"
   get "classroom/send_text/:recipient_id/:sender_id" => "classroom#send_text"
   post "classroom/send_text"
