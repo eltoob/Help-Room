@@ -12,6 +12,7 @@ class ClassroomController < ApplicationController
 
   def show
     @user = User.find_by_uni(params[:id])
+    @user = User.first unless @user 
     opentok = OpenTok::OpenTokSDK.new OT_key, OT_secret
     @token = opentok.generate_token :session_id => @user.session_id
     @s_id=@user.session_id

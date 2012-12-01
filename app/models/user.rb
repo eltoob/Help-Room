@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     end
 
     def create_uni
-      self.uni = self.email.split("@").first
+      self.uni = self.name
     end
     
     def create_opentok_session
