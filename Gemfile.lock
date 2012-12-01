@@ -70,7 +70,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.4)
-    opentok (0.0.5)
+    opentok (0.0.92)
     orm_adapter (0.0.6)
     pg (0.12.2)
     polyglot (0.3.3)
