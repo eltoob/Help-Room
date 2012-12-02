@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   before_create :create_string, :create_uni, :auto_confirm, :create_opentok_session
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name,  :ta, :session_id, :random_string, :number
@@ -25,8 +25,6 @@ class User < ActiveRecord::Base
     def create_opentok_session
       @opentok = OpenTok::OpenTokSDK.new OT_key, OT_secret
       self.session_id=@opentok.create_session.session_id
-      puts '----------'
-      puts session_id
     end
     
     def auto_confirm
